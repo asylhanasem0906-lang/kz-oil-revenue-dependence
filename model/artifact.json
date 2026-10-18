@@ -1,0 +1,57 @@
+{
+  "model_name": "First-Difference Brent Regression",
+  "indicator_name": "Oil Tax Revenue-to-State Budget Income Ratio",
+  "indicator_unit": "percent",
+  "model_target": "annual change in indicator, percentage points",
+  "frequency": "annual",
+  "sample_start": 2008,
+  "sample_end": 2025,
+  "n_observations": 18,
+  "estimated_at_utc": "2026-10-18T01:28:03.270231+00:00",
+  "coefficients": {
+    "const": -1.2198613801649483,
+    "dBrent": 0.42751034355374695
+  },
+  "standard_errors": {
+    "const": 1.214952963543896,
+    "dBrent": 0.055338703524543606
+  },
+  "covariance_matrix": [
+    [
+      1.4761107036240957,
+      0.0005903572896659629
+    ],
+    [
+      0.0005903572896659629,
+      0.003062372107777335
+    ]
+  ],
+  "r_squared": 0.788585996610768,
+  "diagnostics": {
+    "breusch_godfrey_p": 0.6395144827769577,
+    "breusch_pagan_p": 0.1405370910588542,
+    "durbin_watson": 1.7232812229416719
+  },
+  "forecast_test": {
+    "test_years": [
+      2022,
+      2023,
+      2024,
+      2025
+    ],
+    "naive": {
+      "mae": 8.572422391555953,
+      "rmse": 10.338433400450219
+    },
+    "difference_model_lagged_brent": {
+      "mae": 8.551523951926747,
+      "rmse": 11.30038060878019
+    }
+  },
+  "limitations": [
+    "19 annual observations in the original dataset.",
+    "The indicator covers National Fund oil taxes relative to state budget income.",
+    "The regression describes same-year associations, not causality.",
+    "The naive benchmark has lower out-of-sample RMSE."
+  ]
+}
