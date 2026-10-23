@@ -6,6 +6,7 @@ import json
 import numpy as np
 import pandas as pd
 import statsmodels.api as sm
+from statsmodels.tsa.stattools import adfuller, kpss
 
 from statsmodels.stats.diagnostic import (
     acorr_breusch_godfrey,
@@ -32,7 +33,36 @@ y = reg["dY"]
 model = sm.OLS(y, X).fit()
 
 bg = acorr_breusch_godfrey(model, nlags=1)
-bp = het_breuschpagan(model.resid, X)
+bp = het_breuschpagan(model.resid, X) 
+
+def stationarity_tests(series):
+    values = pd.to_numeric(series, errors="coerce").dropna()
+
+    adf_result = adfuller(values, maxlag=1, autolag=None)
+    kpss_result = kpss(
+        values,
+        regression="c",
+        nlags="auto"
+    )
+
+    return {
+        "adf_statistic": float(adf_result[0]),
+        "adf_p": float(adf_result[1]),
+        "kpss_statistic": float(kpss_result[0]),
+        "kpss_p": float(kpss_result[1]),
+        "n_observations": int(len(values))
+    }
+
+
+stationarity_results = {
+    "indicator_level": stationarity_tests(df["Y (%)"]),
+    "indicator_difference": stationarity_tests(df["dY"]),
+    "brent_level": stationarity_tests(
+        df["Brent annual avg (USD/bbl)"]
+    ),
+    "brent_difference": stationarity_tests(df["dBrent"])
+}
+
 
 # Load previously generated forecast results
 forecast_file = project / "outputs" / "difference_backtest.csv"
@@ -63,6 +93,7 @@ artifact = {
     },
     "covariance_matrix": model.cov_params().values.tolist(),
     "r_squared": float(model.rsquared),
+    "stationarity": stationarity_results,
     "diagnostics": {
         "breusch_godfrey_p": float(bg[1]),
         "breusch_pagan_p": float(bp[1]),
