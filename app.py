@@ -136,7 +136,7 @@ elif section == 'Regression & Drivers':
             for key, label in labels.items():
                 val = stationarity.get(key, {})
                 if val:
-                    station_rows.append({'Series':label, 'n':val.get('n'), 'ADF p-value':val.get('adf_p'), 'KPSS p-value':val.get('kpss_p'), 'KPSS upper-bound flag':val.get('kpss_p_bounded', False)})
+                    station_rows.append({'Series':label, 'n':val.get('n_observations'), 'ADF p-value':val.get('adf_p'), 'KPSS p-value':val.get('kpss_p'), 'KPSS upper-bound flag':val.get('kpss_p_bounded', False)})
             st.dataframe(pd.DataFrame(station_rows).round(4), hide_index=True, use_container_width=True)
             st.caption('ADF null: unit root. KPSS null: stationarity. A KPSS p-value of 0.10 with an upper-bound flag means p ≥ 0.10, not exactly 0.10. With 18–19 annual points, these tests have limited power.')
         else:

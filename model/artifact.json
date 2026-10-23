@@ -7,7 +7,7 @@
   "sample_start": 2008,
   "sample_end": 2025,
   "n_observations": 18,
-  "estimated_at_utc": "2026-10-18T01:28:03.270231+00:00",
+  "estimated_at_utc": "2026-10-23T11:08:00.582652+00:00",
   "coefficients": {
     "const": -1.2198613801649483,
     "dBrent": 0.42751034355374695
@@ -27,8 +27,38 @@
     ]
   ],
   "r_squared": 0.788585996610768,
+  "stationarity": {
+    "indicator_level": {
+      "adf_statistic": -1.4872606693880606,
+      "adf_p": 0.5398036275139434,
+      "kpss_statistic": 0.497865541106705,
+      "kpss_p": 0.04214740065164302,
+      "n_observations": 19
+    },
+    "indicator_difference": {
+      "adf_statistic": -3.4765913361196015,
+      "adf_p": 0.008609027984768671,
+      "kpss_statistic": 0.09533104265059006,
+      "kpss_p": 0.1,
+      "n_observations": 18
+    },
+    "brent_level": {
+      "adf_statistic": -2.526048596660333,
+      "adf_p": 0.10926436618680085,
+      "kpss_statistic": 0.18723425939217697,
+      "kpss_p": 0.1,
+      "n_observations": 19
+    },
+    "brent_difference": {
+      "adf_statistic": -3.7823572748191148,
+      "adf_p": 0.003093069890478756,
+      "kpss_statistic": 0.061018746434162996,
+      "kpss_p": 0.1,
+      "n_observations": 18
+    }
+  },
   "diagnostics": {
-    "breusch_godfrey_p": 0.6395144827769577,
+    "breusch_godfrey_p": 0.6395144827769547,
     "breusch_pagan_p": 0.1405370910588542,
     "durbin_watson": 1.7232812229416719
   },
